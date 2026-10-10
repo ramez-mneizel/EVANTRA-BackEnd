@@ -16,6 +16,6 @@ router.post("/", protect, authorize("admin"), createEvent);
 router.put("/:id", protect, authorize("admin"), updateEvent);
 router.delete("/:id", protect, authorize("admin"), deleteEvent);
 
-router.put("/:id/review", protect, authorize("moderator"), reviewEvent);
+router.put("/:id/review", protect, authorize( "admin" ,"moderator"), reviewEvent);
 
 export default router;
