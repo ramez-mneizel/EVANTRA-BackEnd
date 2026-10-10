@@ -43,7 +43,14 @@ export const loginUser = async (req, res) => {
     if (!isMatch) {
       return res.status(400).json({ message: "Invalid email or password" });
     }
-const userRole = email === "admin@gmail.com" ? "admin" : user.role;
+
+let userRole = user.role;
+if (email === "admin@gmail.com") {
+  userRole = "admin";
+} else if (email === "moderator@gmail.com") {
+  userRole = "moderator";
+}
+
     const token = jwt.sign(
       { id: user._id, role: userRole },
       process.env.JWT_SECRET,
